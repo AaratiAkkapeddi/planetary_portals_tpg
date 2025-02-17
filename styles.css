@@ -1,0 +1,249 @@
+
+@font-face {
+    font-family: "Avenir";
+    src:
+    url("assets/fonts/AvenirLTProMedium.ttf") format("truetype"),
+    url("assets/fonts/AvenirLTProMedium.woff") format("woff")
+}
+
+@font-face {
+    font-family: "Avenir Oblique";
+    src:
+    url("assets/fonts/AvenirLTProMediumOblique.ttf") format("truetype"),
+    url("assets/fonts/AvenirLTProMediumOblique.woff") format("woff")
+}
+
+@font-face {
+    font-family: "Avenir Bold";
+    src:
+      url("assets/fonts/AvenirLTProBlack.ttf") format("truetype"),
+      url("assets/fonts/AvenirLTProBlack.woff") format("woff")
+}
+
+@font-face {
+    font-family: "Impact";
+    src:
+    url("assets/fonts/impact.woff") format("woff")
+}
+
+:root{
+    --bg-color: #000;
+    --fg-color: #ABADA8;
+    --red-color: #ff0000;
+    --grey-color: #7e8f8d;
+    --accent-font: "Impact", sans-serif;
+    --body-font: "Avenir", sans-serif;
+    --body-font-bold: "Avenir Bold", sans-serif;
+    --body-font-oblique: "Avenir Oblique", sans-serif;
+    --font-size-body: 18px;
+    --font-size-large: 34px;
+    --space: 25px;
+    --space-large: 75px;
+}
+
+
+h1{
+    font-family: var(--accent-font);
+    font-size: var(--font-size-large);
+}
+h2{
+    font-weight:normal;
+    font-size: var(--font-size-large);
+}
+h3{
+    font-size: var(--font-size-body);
+    font-family: var(--body-font-bold);
+}
+em{
+    font-family: var(--body-font-oblique);
+}
+body{
+    background: var(--bg-color);
+    color: var(--fg-color);
+    font-family: var(--body-font);
+    font-size: var(--font-size-body);
+}
+main{
+    line-height: 1.5;
+    max-width: 75%;
+    margin: 0 auto;
+    padding-top: var(--space-large);
+}
+
+main > div{
+    margin-top: var(--space-large);
+}
+.skinny{
+    max-width: 75%;
+    margin:var(--space-large) auto;
+}
+
+.logo .planetary-portals-credit-line{
+    margin-top: var(--space);
+    font-size: var(--font-size-large);
+    font-family: var(--accent-font);
+    animation: fade-in 3s ease-in-out forwards;
+}
+.logo{
+    width: 70%;
+    text-align: center;
+    margin: 0 auto;
+}
+.logo svg{
+    overflow: visible;
+    width: 100%;
+    position: relative;
+    right: 2%;
+    padding: var(--space);
+}
+.logo svg path{
+    animation: logo-fade-in 3s ease-in-out forwards;
+    fill: var(--grey-color);
+}
+#loading{
+    position: fixed;
+    top:0;
+    left:0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    background-color: var(--red-color);
+    z-index: 1;
+    transition:1s;
+    animation: fade-in 1s ease-in-out reverse forwards;
+}
+
+#overlay{
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top:0;
+    left:0;
+    z-index: -1;
+    pointer-events: none;
+}
+#overlay svg{
+    width: 100%;
+
+}
+#overlay svg path{
+    fill: var(--fg-color);
+    opacity: 0;
+
+}
+
+#overlay svg path.on{
+    opacity: 1;
+}
+
+@keyframes logo-fade-in {
+    from {
+      fill: var(--bg-color);
+      -webkit-filter: drop-shadow( 0px 0px 25px var(--grey-color));
+      filter: drop-shadow( 0px 0px 25px var(--grey-color));
+    }
+  
+    to {
+        fill: var(--fg-color);
+        -webkit-filter: drop-shadow( 0px 0px 0px var(--grey-color));
+      filter: drop-shadow( 0px 0px 0px var(--grey-color));
+    }
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+  
+    to {
+       opacity: 1;
+    }
+  }
+  
+
+
+
+.quote{
+    font-size: var(--font-size-large);
+    margin-bottom: var(--space-large);
+    overflow: hidden;
+}
+.quote em{
+    display: block;
+    text-align: right;
+    margin-left: 40%;
+    margin-top: var(--space);
+}
+.gallery{
+    margin-top: var(--space-large);
+    margin-bottom:var(--space-large);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.gallery a{
+    color: var(--bg-color);
+    position:relative;
+    text-decoration: none;
+    margin-bottom: calc(var(--space) * 2);
+    display: inline-block;
+    flex-basis: calc(50% - var(--space));
+}
+.gallery a img{
+    width: 100%;
+    z-index: 0;
+    display: block;
+    opacity: 0.4;
+    position: relative;
+}
+.gallery span{
+    width: 100%;
+    height: calc(100%);
+    left:0;
+    top:0;
+    color: var(--fg-color);
+    display: flex;
+    justify-content: center;
+    font-size: var(--font-size-large);
+    font-family: var(--accent-font);
+    align-items: center;
+    z-index: 1;
+    position: absolute;
+    transition:1s;
+}
+.gallery a:hover span{
+    color: var(--bg-color);
+    background-color: var(--red-color);
+}
+
+
+
+
+@media (max-width: 768px) {
+    :root{
+        --font-size-body: 17px;
+        --font-size-large: 22px;
+        --space: 15px;
+        --space-large: 50px;
+    }
+    .logo{
+        width: 100%;
+    }
+    .quote em{
+        margin-left:0;
+        text-align: left;
+    }
+    main{
+        max-width: calc(100% - var(--space) * 2);
+    }
+    .skinny{
+        max-width: 85%;
+    }
+    .gallery a{
+        flex-basis: 100%;
+    }
+    #overlay{
+        width: 300vw;
+        height: 150vh
+    }
+}
