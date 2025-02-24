@@ -21,9 +21,11 @@
 }
 
 @font-face {
-    font-family: "Impact";
+    font-family: "Autostrada";
     src:
-    url("assets/fonts/impact.woff") format("woff")
+    url("assets/fonts/Autostrada.ttf") format("truetype"),
+    url("assets/fonts/Autostrada.ttf") format("woff")
+
 }
 
 :root{
@@ -31,12 +33,14 @@
     --fg-color: #ABADA8;
     --red-color: #ff0000;
     --grey-color: #7e8f8d;
-    --accent-font: "Impact", sans-serif;
+    --accent-font: "Autostrada", sans-serif;
     --body-font: "Avenir", sans-serif;
     --body-font-bold: "Avenir Bold", sans-serif;
     --body-font-oblique: "Avenir Oblique", sans-serif;
-    --font-size-body: 18px;
-    --font-size-large: 34px;
+    --font-size-body: 22px;
+    --font-size-small: 16px;
+    --font-size-large: 30px;
+    --font-size-large-accent: 42px;
     --space: 25px;
     --space-large: 75px;
 }
@@ -44,7 +48,8 @@
 
 h1{
     font-family: var(--accent-font);
-    font-size: var(--font-size-large);
+    font-size: var(--font-size-large-accent);
+    text-transform: uppercase;
 }
 h2{
     font-weight:normal;
@@ -58,20 +63,81 @@ em{
     font-family: var(--body-font-oblique);
 }
 body{
+    margin:0;
     background: var(--bg-color);
     color: var(--fg-color);
     font-family: var(--body-font);
     font-size: var(--font-size-body);
 }
+
+nav{
+    padding: var(--space);
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    width: calc(100% - var(--space) * 2);
+    top:0; left:0;
+    z-index: 9;
+}
+
+
+
+#right-nav{
+    width: 25%;
+    display: flex;
+    justify-content: flex-end;
+}
+#right-nav > a{
+    margin-right: var(--space)
+}
+nav a, nav ul{
+    color: var(--fg-color);
+    text-decoration: none;
+
+}
+nav #film-list {
+    text-align: right;
+    color: pointer;
+    position: relative;
+    overflow: visible;
+}
+nav #film-list ul{
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    top:0;
+    width: 200px;
+}
+nav #film-list ul li:first-child{
+    margin-top: calc(var(--space)/2);
+}
+nav #film-list:hover ul{
+    opacity: 1;
+    list-style: none;
+    text-align: right;
+    
+}
+nav #film-list:hover span{
+    color: var(--grey-color);
+    cursor: pointer;
+}
+nav a:hover{
+    color: var(--grey-color);
+}
 main{
     line-height: 1.5;
-    max-width: 75%;
+    letter-spacing: 0.02em;
     margin: 0 auto;
     padding-top: var(--space-large);
 }
 
 main > div{
+    max-width: 75%;
+    margin: 0 auto;
     margin-top: var(--space-large);
+}
+main > div:first-child{
+    margin-top:0;
 }
 .skinny{
     max-width: 75%;
@@ -80,7 +146,7 @@ main > div{
 
 .logo .planetary-portals-credit-line{
     margin-top: var(--space);
-    font-size: var(--font-size-large);
+    font-size: var(--font-size-large-accent);
     font-family: var(--accent-font);
     animation: fade-in 3s ease-in-out forwards;
 }
@@ -93,7 +159,7 @@ main > div{
     overflow: visible;
     width: 100%;
     position: relative;
-    right: 2%;
+    left: -5%;
     padding: var(--space);
 }
 .logo svg path{
@@ -104,15 +170,33 @@ main > div{
     position: fixed;
     top:0;
     left:0;
-    width: 100vw;
-    height: 100vh;
+    width: calc(100vw - 2px);
+    height: calc(100vh - 2px);
     pointer-events: none;
-    background-color: var(--red-color);
+    background-color: transparent;
     z-index: 1;
+    border: 1px solid var(--red-color);
     transition:1s;
-    animation: fade-in 1s ease-in-out reverse forwards;
+    animation: fade-in 1s ease-in-out forwards;
 }
-
+#title-card{
+    position: fixed;
+    top:0;
+    left:0;
+    width: calc(100vw - 4px);
+    height: calc(100vh - 4px);
+    pointer-events: none;
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--red-color);
+    color: var(--bg-color);
+    font-size: var(--font-size-large-accent);
+    font-family: var(--accent-font);
+    text-transform: uppercase;
+    animation: fade-in 3s ease-in-out reverse forwards;
+}
 #overlay{
     width: 100vw;
     height: 100vh;
@@ -135,6 +219,77 @@ main > div{
 #overlay svg path.on{
     opacity: 1;
 }
+
+
+.battleground-video{
+
+    width: 100%;
+
+}
+
+
+.section1{
+    display: flex;
+}
+
+
+.section{
+    min-height: calc(100vh - var(--space) * 2);
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: left;
+}
+.section h1{
+    width: 100%;
+}
+.section .camera-table{
+   float:right;
+   width: 44%;
+   margin-left: var(--space-large);
+   margin-bottom: var(--space-large);
+}
+
+.archival-photography{
+    min-height: 100vh;
+    display: flex;
+    max-width: calc(100% - var(--space) * 2);
+    width: 100%;
+    left: 0;
+    justify-content: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    align-items: center;
+    padding: var(--space)
+}
+.archival-photography > *{
+    max-width: 75%;
+}
+
+.citation{
+    font-size: var(--font-size-small);
+    display: block;
+    font-style: italic;
+    margin-top: var(--space);
+}
+.citation a,.citation a:visited{
+    color: inherit;
+}
+.section img{
+    width: 100%;
+}
+.section blockquote{
+    font-size: var(--font-size-large);
+    padding:var(--space);
+}
+/* #title-card{
+    clip-path: url(#myClip); 
+} */
+
+
+
 
 @keyframes logo-fade-in {
     from {
@@ -203,8 +358,9 @@ main > div{
     top:0;
     color: var(--fg-color);
     display: flex;
+    text-transform: uppercase;
     justify-content: center;
-    font-size: var(--font-size-large);
+    font-size: var(--font-size-large-accent);
     font-family: var(--accent-font);
     align-items: center;
     z-index: 1;
@@ -215,25 +371,70 @@ main > div{
     color: var(--bg-color);
     background-color: var(--red-color);
 }
+main .section.video-section{
+    margin-top:0;
+}
 
 
 
 
+.banner-section > div{
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    background-size: cover;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    mix-blend-mode: multiply;
+    color: var(--bg-color);
+}
+.banner-section{
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    padding:0;
+    background-color: var(--red-color);
+}
+
+
+.section .double p{
+    margin-top:0;
+    
+}
+
+.section .double img{
+    width: calc(45% - var(--space) * 2);
+    align-self: start;
+    float:right;
+    margin: var(--space-large);
+    margin-top:0;
+}
 @media (max-width: 768px) {
     :root{
         --font-size-body: 17px;
         --font-size-large: 22px;
+        --font-size-large-accent: 32px;
         --space: 15px;
         --space-large: 50px;
+        --font-size-small: 16px;
     }
+ 
     .logo{
-        width: 100%;
+        width: calc(100% - var(--space) * 2);
+    }
+    .logo svg{
+        left: -5%;
     }
     .quote em{
         margin-left:0;
         text-align: left;
     }
-    main{
+    main > div{
+        max-width: calc(100% - var(--space) * 2);
+    }
+    .archival-photography > *{
         max-width: calc(100% - var(--space) * 2);
     }
     .skinny{
@@ -245,5 +446,17 @@ main > div{
     #overlay{
         width: 300vw;
         height: 150vh
+    }
+    .section .camera-table{
+        width: 100%;
+        float:none;
+        margin: 0 auto;
+        margin-bottom: var(--space);
+    }
+    blockquote{
+        margin: 0;
+    }
+    .section .double{
+        flex-direction: column;
     }
 }

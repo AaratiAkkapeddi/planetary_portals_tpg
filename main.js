@@ -14,3 +14,27 @@ document.addEventListener("scroll", (event) => {
 
 
   });
+
+
+  function sprite(el, imgurls){
+    var i = 0;                 
+
+        function myLoop() {        
+        setTimeout(function() {   
+            el.src = imgurls[i] 
+            i++;                   
+            if (i < imgurls.length) {          
+            myLoop();            
+            }else{
+                i = 0;
+                myLoop();
+            }                      
+        }, 100)
+        }
+
+        myLoop();   
+  }
+
+
+
+
